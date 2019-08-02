@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { HashRouter, Link } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import './App.css';
 //import Dashboard from './Components/Dashboard/Dashboard'
 //import Wizard from './Components/Wizard/Wizard'
@@ -7,6 +7,14 @@ import routes from './routes'
 import Header from './Components/Header/Header'
 
 export default class App extends Component {
+  constructor() {
+    super()
+  
+    this.state = {
+      houseList: []
+    }
+  }
+  
   render() {
     return (
       <HashRouter>
