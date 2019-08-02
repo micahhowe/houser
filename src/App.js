@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { HashRouter, Link } from 'react-router-dom'
 import './App.css';
+//import Dashboard from './Components/Dashboard/Dashboard'
+//import Wizard from './Components/Wizard/Wizard'
+import routes from './routes'
+import Header from './Components/Header/Header'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <HashRouter>
+        <div className="App">
+          <Header />
+          {/* <Link to="/" className='links'>Dashboard</Link>
+          <Link to="/wizard" className='links'>Wizard</Link> */}
+          {/* These links above are unneccessary since there is no nav bar in this app  */}
+        </div>
+        {routes}
+      </HashRouter>
+    );
+  }
 }
-
-export default App;
