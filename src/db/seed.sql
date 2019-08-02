@@ -9,3 +9,6 @@ CREATE TABLE house(
 
 INSERT INTO house (name, address, city, state, zip)
 VALUES (350, '123 Circle Road');
+
+ALTER TABLE house
+ADD monthly_morgage_amount NUMERIC;
