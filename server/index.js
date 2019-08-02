@@ -7,9 +7,7 @@ const {SERVER_PORT, CONNECTION_STRING} = process.env
 
 app.use(express.json())
 
-// app.listen(SERVER_PORT, () => 
-// console.log(`A wild house appeared: ${SERVER_PORT} `)
-// )
+app.get('/api/houses', ctrl.getHouses)
 
 
 massive(CONNECTION_STRING).then(dbInstance => {
