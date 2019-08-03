@@ -1,14 +1,14 @@
 CREATE TABLE house(
   id SERIAL PRIMARY KEY,
-  name varchar(50),
+  name VARCHAR(100),
   address VARCHAR(100),
   city VARCHAR(100),
   state VARCHAR(100),
-  zip VARCHAR(100)
+  zipcode NUMERIC
 );
 
-INSERT INTO house (name, address, city, state, zip)
-VALUES (350, '123 Circle Road');
+INSERT INTO house (name, address, city, state, zipcode)
+VALUES ('big mommas house', '567 Windy Road', 'Nowhere', 'Ohio', 84578);
 
 ALTER TABLE house
 ADD monthly_morgage_amount NUMERIC;

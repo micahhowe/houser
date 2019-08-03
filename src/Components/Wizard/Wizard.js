@@ -34,7 +34,7 @@ export default class Wizard extends Component {
         console.log(e.target.value)
     }
     render() {
-        console.log(this.state.zipcode)
+        //console.log(this.state.zipcode)
         return (
         <div>
             <h1>Add new listing</h1>
