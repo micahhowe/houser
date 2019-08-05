@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 //import Dashboard from '../../routes'
 import axios from 'axios'
 export default class Wizard extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
       
         this.state = {
             name: '',
@@ -34,12 +34,33 @@ export default class Wizard extends Component {
         this.setState({ zipcode: e.target.value })
         console.log(e.target.value)
     }
-    addHouse(body) {
-        axios.post('/api/houses', body).then(res => {
-          //this.setState({inventoryList: res.data})
-          () => this.props.history.push('/')
-        })
+    goToDash = () => this.props.history.push('/')
+    //This is step 4 
+    addHouse() {
+       const body = {
+           name: this.state.name,
+           address: this.state.address,
+           city: this.state.city,
+           state: this.state.state,
+           zipcode: this.state.zipcode
+       }
+       //I need to pass this down on props (through route > I'm still not sure how to do that)
+       this.props.addHouse(body)
+       this.resetText()
+       this.goToDash()
       }
+      resetText() {
+        let text = document.getElementById('text')
+        let text1 = document.getElementById('text1')
+        let text2 = document.getElementById('text2')
+        let text3 = document.getElementById('text3')
+        let text4 = document.getElementById('text4')
+        text.value = ''
+        text1.value = ''
+        text2.value = ''
+        text3.value = ''
+        text4.value = ''
+    }
     render() {
         //console.log(this.state.zipcode)
         return (
@@ -48,18 +69,19 @@ export default class Wizard extends Component {
             <Link to='/'><button>Cancel</button></Link>
             <div className="wiz-input">
                 <h2>Name</h2>
-                <input type="text" onChange={e => this.handleNameChange(e)}/>
+                <input type="text" id="text" onChange={e => this.handleNameChange(e)}/>
                 <h2>Address</h2>
-                <input type="text" onChange={e => this.handleAddressChange(e)}/>
+                <input type="text" id="text1" onChange={e => this.handleAddressChange(e)}/>
                 <h2>City</h2>
-                <input type="text" onChange={e => this.handleCityChange(e)}/>
+                <input type="text" id="text2" onChange={e => this.handleCityChange(e)}/>
                 <h2>State</h2>
-                <input type="text" onChange={e => this.handleStateChange(e)}/>
+                <input type="text" id="text3" onChange={e => this.handleStateChange(e)}/>
                 <h2>Zipcode</h2>
-                <input type="text" onChange={e => this.handleZipChange(e)}/>
+                <input type="text" id="text4" onChange={e => this.handleZipChange(e)}/>
             </div>
-                <button onClick={() => this.props.history.push('/')}>Complete</button>
+                <button onClick={() => this.addHouse()}>Complete</button>
         </div>
         )
     }
 }
+
