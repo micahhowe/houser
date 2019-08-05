@@ -8,6 +8,7 @@ const {SERVER_PORT, CONNECTION_STRING} = process.env
 app.use(express.json())
 
 app.get('/api/houses', ctrl.getHouses)
+app.post('/api/houses/', ctrl.addHouse)
 
 
 massive(CONNECTION_STRING).then(dbInstance => {
