@@ -37,6 +37,7 @@ export default class Wizard extends Component {
     goToDash = () => this.props.history.push('/')
     //This is step 4 
     addHouse() {
+        //This whole thing is a mystery to me because they both want an axios call and put them in the body
        const body = {
            name: this.state.name,
            address: this.state.address,
@@ -44,23 +45,25 @@ export default class Wizard extends Component {
            state: this.state.state,
            zipcode: this.state.zipcode
        }
-       //I need to pass this down on props (through route > I'm still not sure how to do that)
-       this.props.addHouse(body)
-       this.resetText()
-       this.goToDash()
+       axios.post('/api/houses', body).then(res => {
+        //this.setState({houseList: res.data})
+        this.goToDash()
+      })
+       //this.props.addHouse(body) > This is accomplished by the axios right above
+       //this.resetText()
       }
-      resetText() {
-        let text = document.getElementById('text')
-        let text1 = document.getElementById('text1')
-        let text2 = document.getElementById('text2')
-        let text3 = document.getElementById('text3')
-        let text4 = document.getElementById('text4')
-        text.value = ''
-        text1.value = ''
-        text2.value = ''
-        text3.value = ''
-        text4.value = ''
-    }
+    //   resetText() {
+    //     let text = document.getElementById('text')
+    //     let text1 = document.getElementById('text1')
+    //     let text2 = document.getElementById('text2')
+    //     let text3 = document.getElementById('text3')
+    //     let text4 = document.getElementById('text4')
+    //     text.value = ''
+    //     text1.value = ''
+    //     text2.value = ''
+    //     text3.value = ''
+    //     text4.value = ''
+    //}
     render() {
         //console.log(this.state.zipcode)
         return (
