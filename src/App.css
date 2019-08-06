@@ -8,6 +8,6 @@ input {
 
 .wiz-input {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
 }

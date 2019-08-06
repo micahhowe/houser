@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 export default class House extends Component {
+    constructor(props) {
+        super(props)
+        
+    }
     render() {
         
         return (
@@ -10,7 +14,7 @@ export default class House extends Component {
             <p>{this.props.state}</p>
             <p>{this.props.city}</p>
             <p>{this.props.zipcode}</p>
-            <button>Delete</button>
+            <button onClick={() => this.props.deleteHouse(this.props.id)}>Delete</button>
         </div>
         )
     }

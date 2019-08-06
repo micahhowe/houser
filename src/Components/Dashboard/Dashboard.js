@@ -15,6 +15,8 @@ class Dashboard extends Component {
         this.state = {
             houseList: []
         }
+        this.deleteHouse = this.deleteHouse.bind(this)
+
      }
     //  componentDidMount(){
     //     store.subscribe(() => {
@@ -24,14 +26,26 @@ class Dashboard extends Component {
     //       })
     //     })
     //   }
-    componentDidMount() {
-        axios.get('/api/houses').then(res => {
-          this.setState({
-            houseList: res.data
+    //goToDash = () => this.props.history.push('/')
+    deleteHouse(id){
+        axios.delete(`/api/houses/${id}`).then(res => {
+            this.getHouses()
+            //I need this to pull in the houses or refresh the page
+          }).catch(function() {
+            console.log('Awww Jeez Rick ... could not delete house');
           })
-        }).catch(function() {
-          console.log('SQL table not found. Alert the authorities'); // "oh, no!"
-        })
+    }
+    getHouses(){
+        axios.get('/api/houses').then(res => {
+            this.setState({
+              houseList: res.data
+            })
+          }).catch(function() {
+            console.log('SQL table not found. Alert the authorities'); // "oh, no!"
+          })
+    } 
+    componentDidMount() {
+        this.getHouses()
       }
     render() {
         console.log(this.state.houseList)
@@ -42,7 +56,7 @@ class Dashboard extends Component {
         return (
         <div>
             <h1>Dashboard</h1>
-            <button onClick={() => this.props.history.push('/wizard')}>Add New Property</button>
+            <button onClick={() => this.props.history.push('/wizard/step1')}>Add New Property</button>
             <div className="house-list">{this.state.houseList.map(el => (
             <House
             id={el.id}
@@ -52,6 +66,7 @@ class Dashboard extends Component {
             state={el.state}
             zipcode={el.zipcode}
             key={el.id}
+            deleteHouse={this.deleteHouse}
             />))}
             </div>   
         </div>

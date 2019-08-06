@@ -1,88 +1,29 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
+import Step1 from '../Step1/Step1'
+import Step2 from '../Step2/Step2'
+import Step3 from '../Step3/Step3'
 //import Dashboard from '../../routes'
 import axios from 'axios'
 export default class Wizard extends Component {
     constructor(props) {
         super(props)
       
-        this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: ''
-          }
       }
-    handleNameChange(e) {
-          this.setState({ name: e.target.value })
-          console.log(e.target.value)
-    }
-    handleAddressChange(e) {
-        this.setState({ address: e.target.value })
-        console.log(e.target.value)
-    }
-    handleCityChange(e) {
-        this.setState({ city: e.target.value })
-        console.log(e.target.value)
-    }
-    handleStateChange(e) {
-        this.setState({ state: e.target.value })
-        console.log(e.target.value)
-    }
-    handleZipChange(e) {
-        this.setState({ zipcode: e.target.value })
-        console.log(e.target.value)
-    }
+    
     goToDash = () => this.props.history.push('/')
-    //This is step 4 
-    addHouse() {
-        //This whole thing is a mystery to me because they both want an axios call and put them in the body
-       const body = {
-           name: this.state.name,
-           address: this.state.address,
-           city: this.state.city,
-           state: this.state.state,
-           zipcode: this.state.zipcode
-       }
-       axios.post('/api/houses', body).then(res => {
-        //this.setState({houseList: res.data})
-        this.goToDash()
-      })
-       //this.props.addHouse(body) > This is accomplished by the axios right above
-       //this.resetText()
-      }
-    //   resetText() {
-    //     let text = document.getElementById('text')
-    //     let text1 = document.getElementById('text1')
-    //     let text2 = document.getElementById('text2')
-    //     let text3 = document.getElementById('text3')
-    //     let text4 = document.getElementById('text4')
-    //     text.value = ''
-    //     text1.value = ''
-    //     text2.value = ''
-    //     text3.value = ''
-    //     text4.value = ''
-    //}
+    
     render() {
-        //console.log(this.state.zipcode)
         return (
         <div>
+            {/* These next two lines are the reason that it is displaying twice */}
             <h1>Add new listing</h1>
             <Link to='/'><button>Cancel</button></Link>
-            <div className="wiz-input">
-                <h2>Name</h2>
-                <input type="text" id="text" onChange={e => this.handleNameChange(e)}/>
-                <h2>Address</h2>
-                <input type="text" id="text1" onChange={e => this.handleAddressChange(e)}/>
-                <h2>City</h2>
-                <input type="text" id="text2" onChange={e => this.handleCityChange(e)}/>
-                <h2>State</h2>
-                <input type="text" id="text3" onChange={e => this.handleStateChange(e)}/>
-                <h2>Zipcode</h2>
-                <input type="text" id="text4" onChange={e => this.handleZipChange(e)}/>
-            </div>
-                <button onClick={() => this.addHouse()}>Complete</button>
+            <Switch>
+                <Route path="/wizard/step1" component={Step1}/>
+                <Route path="/wizard/step2" component={Step2}/>
+                <Route path="/wizard/step3" component={Step3}/>
+            </Switch>
         </div>
         )
     }
