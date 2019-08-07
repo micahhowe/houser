@@ -16,6 +16,10 @@ export default class Step2 extends Component {
             type: UPDATE_IMAGE,
             payload: e.target.value
           })  
+          //This line is very important, otherwise we are never setting state
+        this.setState({
+            img:e.target.value
+        })
     }
     goToDash = () => this.props.history.push('/')
     

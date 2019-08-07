@@ -89,7 +89,7 @@ export default class Step1 extends Component {
                 zipcode: reduxState.zipcode,
               })
             })
-            console.log(this.state)
+            //console.log(this.state)
           }
     render() {
         //console.log(this.state.zipcode)

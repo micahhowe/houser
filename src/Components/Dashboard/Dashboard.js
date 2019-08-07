@@ -41,7 +41,7 @@ class Dashboard extends Component {
         console.log('house > US state:', this.props.unitedState)
         console.log('house > img:', this.props.img)
         return (
-        <div>
+        <div className="page-content">
             <h1>Dashboard</h1>
             <button onClick={() => this.props.history.push('/wizard/step1')}>Add New Property</button>
             <div className="house-list">{this.state.houseList.map(el => (
@@ -51,7 +51,8 @@ class Dashboard extends Component {
             name={el.name}
             address={el.address}
             city={el.city}
-            unitedState={el.unitedState}
+            //you need to make sure that the name off of sql is all lowercase because postgres doesn't recognize CASE
+            unitedState={el.unitedstate}
             zipcode={el.zipcode}
             monthly_mortgage_amount = {el.monthly_mortgage_amount}
             desired_rent = {el.desired_rent}
