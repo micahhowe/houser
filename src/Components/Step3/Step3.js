@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import store, { UPDATE_MORTGAGE, UPDATE_RENT } from '../../store';
+import store from '../../store';
 
 export default class Step3 extends Component {
     constructor(props) {
@@ -31,15 +31,15 @@ export default class Step3 extends Component {
             name: reduxState.name,
             address: reduxState.address,
             city: reduxState.city,
-            state: reduxState.state,
+            unitedState: reduxState.unitedState,
             zipcode: reduxState.zipcode,
             img: reduxState.img,
-            monthly_mortgage_amount: this.state.monthly_mortgage_amount * 100,
-            desired_rent: this.state.desired_rent * 100,
+            monthly_mortgage_amount: this.state.monthly_mortgage_amount * 10,
+            desired_rent: this.state.desired_rent * 10,
         }
        axios.post('/api/houses', body).then(res => {
-        //this.setState({houseList: res.data})
-        this.goToDash()
+        //this gotoDash is a problem because it isn't fully reloading the page
+        //this.goToDash()
       })
        //this.props.addHouse(body) > This is accomplished by the axios right above
        //this.resetText()

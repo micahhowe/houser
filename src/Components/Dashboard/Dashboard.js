@@ -38,6 +38,8 @@ class Dashboard extends Component {
       }
     render() {
         //console.log(this.state.houseList)
+        console.log('house > US state:', this.props.unitedState)
+        console.log('house > img:', this.props.img)
         return (
         <div>
             <h1>Dashboard</h1>
@@ -49,7 +51,7 @@ class Dashboard extends Component {
             name={el.name}
             address={el.address}
             city={el.city}
-            state={el.state}
+            unitedState={el.unitedState}
             zipcode={el.zipcode}
             monthly_mortgage_amount = {el.monthly_mortgage_amount}
             desired_rent = {el.desired_rent}

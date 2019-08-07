@@ -6,29 +6,25 @@ export default class Step2 extends Component {
     constructor(props) {
         super(props)
       
+        const reduxState = store.getState()
         this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: '',
-            img: ''
-          }
+        img: reduxState.img,
       }
+    }
     handleImageChange(e) {
         store.dispatch({
             type: UPDATE_IMAGE,
             payload: e.target.value
-          })
+          })  
     }
     goToDash = () => this.props.history.push('/')
     
    buttonActions() {
     store.dispatch({
         type: UPDATE_IMAGE,
-        payload: this.state.image
-
+        payload: this.state.img
 })
+        
    }
        
     render() {

@@ -1,5 +1,12 @@
+body{
+  background:rgb(177, 92, 177);
+}
 .App {
   text-align: center;
+}
+header{
+  margin-top:0px;
+  background:purple
 }
 input {
   max-height:20px;

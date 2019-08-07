@@ -13,7 +13,7 @@ export default class Step1 extends Component {
         name: reduxState.name,
         address: reduxState.address,
         city: reduxState.city,
-        state: reduxState.state,
+        unitedState: reduxState.unitedState,
         zipcode: reduxState.zipcode,
         };
         
@@ -64,11 +64,11 @@ export default class Step1 extends Component {
         })
         store.dispatch({
             type: UPDATE_STATE,
-            payload: this.state.houseState
+            payload: this.state.unitedState
         })
         store.dispatch({
             type:UPDATE_ZIPCODE,
-            payload: this.state.zip_code
+            payload: this.state.zipcode
         })
         //() => this.props.history.push('/wizard/step2')
     }
@@ -85,7 +85,7 @@ export default class Step1 extends Component {
                 name: reduxState.name,
                 address: reduxState.address,
                 city: reduxState.city,
-                state: reduxState.houseState,
+                unitedState: reduxState.unitedState,
                 zipcode: reduxState.zipcode,
               })
             })
@@ -107,7 +107,6 @@ export default class Step1 extends Component {
                 <h2>Zipcode</h2>
                 <input type="text" id="text4" onChange={e => this.handleZipChange(e)}/>
             </div>
-            {/* Replace the next line with Next Step */}
             <Link to='/wizard/step2'>
                 <button onClick={() => this.buttonActions()}>Next Step</button>
             </Link>

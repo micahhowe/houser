@@ -4,7 +4,7 @@ import Step1 from '../Step1/Step1'
 import Step2 from '../Step2/Step2'
 import Step3 from '../Step3/Step3'
 //import Dashboard from '../../routes'
-import axios from 'axios'
+//import axios from 'axios'
 export default class Wizard extends Component {
     constructor(props) {
         super(props)
