@@ -6,29 +6,35 @@ const initialState = {
     city: '',
     state: '',
     zipcode: '',
+    price: '',
+    monthly_morgage_amount: '',
+    desired_rent: '',
     houseList: []
 }
+
 
 export const UPDATE_NAME = "UPDATE_NAME"
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS"
 export const UPDATE_CITY = "UPDATE_CITY"
 export const UPDATE_STATE = "UPDATE_STATE"
 export const UPDATE_ZIPCODE = "UPDATE_ZIPCODE"
+export const UPDATE_PRICE = "UPDATE_PRICE"
 export const ADD_HOUSE = "ADD_HOUSE"
 
-function reducer(state = initialState, action) {
+function reducer(reduxState = initialState, action) {
+    console.log(reduxState)
     switch(action.type){
         case UPDATE_NAME:
             //these are basically placing the current key value pairs into redux
-            return {...state, name: action.payload}
+            return {...reduxState, name: action.payload}
         case UPDATE_ADDRESS:
-            return {...state, address: action.payload}
+            return {...reduxState, address: action.payload}
         case UPDATE_CITY:
-            return{...state, city: action.payload}
+            return{...reduxState, city: action.payload}
         case UPDATE_STATE:
-            return{...state, state: action.payload}
+            return{...reduxState, state: action.payload}
         case UPDATE_ZIPCODE:
-            return{...state, zipcode: action.payload}
+            return{...reduxState, zipcode: action.payload}
         case ADD_HOUSE:
             const {
                 name,
@@ -36,7 +42,7 @@ function reducer(state = initialState, action) {
                 city,
                 state,
                 zipcode
-            } = state;
+            } = reduxState;
             const house = {
                 name,
                 address,
@@ -44,10 +50,10 @@ function reducer(state = initialState, action) {
                 state,
                 zipcode
             }
-            const newHouses = [...state.houseList, house]
-            return {...state, houseList: newHouses}
+            const newHouses = [...reduxState.houseList, house]
+            return {...reduxState, houseList: newHouses}
         default:
-            return 'state'
+            return reduxState
     }
 }
 

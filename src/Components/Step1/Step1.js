@@ -1,21 +1,26 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import  store, {UPDATE_NAME, UPDATE_ADDRESS, UPDATE_CITY, UPDATE_STATE, UPDATE_ZIPCODE } from '../../store'
+//import store from '../../store'
+//console.log(store)
 
 export default class Step1 extends Component {
     constructor(props) {
         super(props)
       
+        const reduxState = store.getState()
         this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: ''
-          }
-      }
+        name: reduxState.name,
+        address: reduxState.address
+        };
+        
+        }
+      
     handleNameChange(e) {
-          this.setState({ name: e.target.value })
-          console.log(e.target.value)
+        store.dispatch({
+            type: UPDATE_NAME,
+            payload: e.target.value
+          })
     }
     handleAddressChange(e) {
         this.setState({ address: e.target.value })
@@ -33,9 +38,24 @@ export default class Step1 extends Component {
         this.setState({ zipcode: e.target.value })
         console.log(e.target.value)
     }
-    goToDash = () => this.props.history.push('/')
-    //This is step 4 
-    
+    updateName() {
+        // Send data to Redux state
+        store.dispatch({
+          type: UPDATE_NAME,
+          payload: this.state.name
+        })
+    }
+    //goToDash = () => this.props.history.push('/')
+    componentDidMount(){
+            store.subscribe(() => {
+              const reduxState = store.getState();
+              this.setState({
+                name: reduxState.name,
+            address: reduxState.address
+              })
+            })
+            console.log(this.state)
+          }
     render() {
         //console.log(this.state.zipcode)
         return (

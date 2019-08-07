@@ -7,25 +7,14 @@ import axios from 'axios'
 class Dashboard extends Component {
     constructor(props) {
         super(props)
-        //I will need this when I get to redux but i got a little ahead of myself
-        // const reduxState = store.getState()
-        // this.state = {
-        // houseList: reduxState.houseList
-        // };
+        
         this.state = {
             houseList: []
         }
         this.deleteHouse = this.deleteHouse.bind(this)
 
      }
-    //  componentDidMount(){
-    //     store.subscribe(() => {
-    //       const reduxState = store.getState();
-    //       this.setState({
-    //         houseList: reduxState.houseList
-    //       })
-    //     })
-    //   }
+    
     //goToDash = () => this.props.history.push('/')
     deleteHouse(id){
         axios.delete(`/api/houses/${id}`).then(res => {
@@ -48,11 +37,7 @@ class Dashboard extends Component {
         this.getHouses()
       }
     render() {
-        console.log(this.state.houseList)
-        // const houseList = this.state.houseList.map((houseList) => {
-        //     return <li key={i}>{houseList}</li>;
-        //   });
-        //console.log(this.state.route.houseList)
+        //console.log(this.state.houseList)
         return (
         <div>
             <h1>Dashboard</h1>
