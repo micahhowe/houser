@@ -6,9 +6,9 @@ module.exports = {
     },
     addHouse: (req, res, next) => {
         const db = req.app.get('db')
-        const { name, address, city, state, zipcode } = req.body
+        const { name, address, city, state, zipcode, img, monthly_mortgage_amount, desired_rent } = req.body
         //const create_house = db.create_house()
-        db.create_house([name, address, city, state, zipcode]).then(result => {
+        db.create_house([name, address, city, state, zipcode, img, monthly_mortgage_amount, desired_rent]).then(result => {
             res.status(200).send(result)
         })
     },

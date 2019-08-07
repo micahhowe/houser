@@ -44,12 +44,15 @@ class Dashboard extends Component {
             <button onClick={() => this.props.history.push('/wizard/step1')}>Add New Property</button>
             <div className="house-list">{this.state.houseList.map(el => (
             <House
+            img={el.img}
             id={el.id}
             name={el.name}
             address={el.address}
             city={el.city}
             state={el.state}
             zipcode={el.zipcode}
+            monthly_mortgage_amount = {el.monthly_mortgage_amount}
+            desired_rent = {el.desired_rent}
             key={el.id}
             deleteHouse={this.deleteHouse}
             />))}

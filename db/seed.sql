@@ -11,6 +11,6 @@ INSERT INTO house (name, address, city, state, zipcode)
 VALUES ('big mommas house', '567 Windy Road', 'Nowhere', 'Ohio', 84578);
 
 ALTER TABLE house
-ADD price NUMERIC,
-ADD monthly_morgage_amount NUMERIC,
+ADD img VARCHAR(250),
+ADD monthly_mortgage_amount NUMERIC,
 ADD desired_rent NUMERIC;

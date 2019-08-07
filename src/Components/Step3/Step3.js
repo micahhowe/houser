@@ -1,41 +1,42 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import store, { UPDATE_MORTGAGE, UPDATE_RENT } from '../../store';
 
 export default class Step3 extends Component {
     constructor(props) {
         super(props)
       
+        const reduxState = store.getState()
         this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: '',
-            imgUrl: '',
-            mortgage: '',
-            rent: ''
-          }
+            monthly_mortgage_amount: reduxState.monthly_mortgage_amount,
+            desired_rent: reduxState.monthly_mortgage_amount
+        }
       }
     handleMortgageChange(e) {
-          this.setState({ mortgage: e.target.value })
-          console.log(e.target.value)
+        this.setState({
+            monthly_mortgage_amount: e.target.value
+        })
     }
     handleRentChange(e) {
-          this.setState({ rent: e.target.value })
-          console.log(e.target.value)
+        this.setState({
+            desired_rent: e.target.value
+        })
     }
     goToDash = () => this.props.history.push('/')
-    //This is step 4 
     addHouse() {
-        //This whole thing is a mystery to me because they both want an axios call and put them in the body
-       const body = {
-           name: this.state.name,
-           address: this.state.address,
-           city: this.state.city,
-           state: this.state.state,
-           zipcode: this.state.zipcode
-       }
+        const reduxState = store.getState()
+        
+        const body = {
+            name: reduxState.name,
+            address: reduxState.address,
+            city: reduxState.city,
+            state: reduxState.state,
+            zipcode: reduxState.zipcode,
+            img: reduxState.img,
+            monthly_mortgage_amount: this.state.monthly_mortgage_amount * 100,
+            desired_rent: this.state.desired_rent * 100,
+        }
        axios.post('/api/houses', body).then(res => {
         //this.setState({houseList: res.data})
         this.goToDash()
@@ -55,8 +56,12 @@ export default class Step3 extends Component {
                 <input type="text" id="text" onChange={e => this.handleRentChange(e)}/>
             </div>
             {/* This is the real complete and we do need to add the previous step */}
+            <Link to='/wizard/step2'>
                 <button onClick={() => this.props.history.push('/wizard/step2')}>Previous Step</button>
+            </Link>
+            <Link to='/'>
                 <button onClick={() => this.addHouse()}>Complete</button>
+            </Link>
         </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import store, { UPDATE_IMAGE } from '../../store';
 
 export default class Step2 extends Component {
     constructor(props) {
@@ -11,16 +12,24 @@ export default class Step2 extends Component {
             city: '',
             state: '',
             zipcode: '',
-            imgUrl: ''
+            img: ''
           }
       }
     handleImageChange(e) {
-          this.setState({ imgUrl: e.target.value })
-          console.log(e.target.value)
+        store.dispatch({
+            type: UPDATE_IMAGE,
+            payload: e.target.value
+          })
     }
     goToDash = () => this.props.history.push('/')
-    //This is step 4 
-   
+    
+   buttonActions() {
+    store.dispatch({
+        type: UPDATE_IMAGE,
+        payload: this.state.image
+
+})
+   }
        
     render() {
         //console.log(this.state.zipcode)
@@ -31,8 +40,12 @@ export default class Step2 extends Component {
                 <input type="text" id="text" onChange={e => this.handleImageChange(e)}/>
             </div>
                         {/* Replace the next line with Next Step & Previous Step */}
-                    <button onClick={() => this.props.history.push('/wizard/step1')}>Previous Step</button>
-                    <button onClick={() => this.props.history.push('/wizard/step3')}>Next Step</button>
+                <Link to='/wizard/step1'>
+                    <button onClick={() => this.buttonActions()}>Previous Step</button>
+                </Link>
+                <Link to='/wizard/step3'>
+                    <button onClick={() => this.buttonActions()}>Next Step</button>
+                </Link>
         </div>
         )
     }

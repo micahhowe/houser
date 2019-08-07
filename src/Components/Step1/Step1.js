@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
-import  store, {UPDATE_NAME, UPDATE_ADDRESS, UPDATE_CITY, UPDATE_STATE, UPDATE_ZIPCODE } from '../../store'
+import  store, {UPDATE_NAME, UPDATE_ADDRESS, UPDATE_CITY, UPDATE_STATE, UPDATE_ZIPCODE, RESET_INPUTS } from '../../store'
 //import store from '../../store'
 //console.log(store)
 
@@ -11,7 +11,10 @@ export default class Step1 extends Component {
         const reduxState = store.getState()
         this.state = {
         name: reduxState.name,
-        address: reduxState.address
+        address: reduxState.address,
+        city: reduxState.city,
+        state: reduxState.state,
+        zipcode: reduxState.zipcode,
         };
         
         }
@@ -23,26 +26,55 @@ export default class Step1 extends Component {
           })
     }
     handleAddressChange(e) {
-        this.setState({ address: e.target.value })
-        console.log(e.target.value)
+        store.dispatch({
+            type: UPDATE_ADDRESS,
+            payload: e.target.value
+          })
     }
     handleCityChange(e) {
-        this.setState({ city: e.target.value })
-        console.log(e.target.value)
+        store.dispatch({
+            type: UPDATE_CITY,
+            payload: e.target.value
+          })
     }
     handleStateChange(e) {
-        this.setState({ state: e.target.value })
-        console.log(e.target.value)
+        store.dispatch({
+            type: UPDATE_STATE,
+            payload: e.target.value
+          })
     }
     handleZipChange(e) {
-        this.setState({ zipcode: e.target.value })
-        console.log(e.target.value)
-    }
-    updateName() {
-        // Send data to Redux state
         store.dispatch({
-          type: UPDATE_NAME,
-          payload: this.state.name
+            type: UPDATE_ZIPCODE,
+            payload: e.target.value
+          })
+    }
+    buttonActions(){
+        store.dispatch({
+            type: UPDATE_NAME,
+            payload: this.state.name
+        })
+        store.dispatch({
+            type: UPDATE_ADDRESS,
+            payload: this.state.address
+        })
+        store.dispatch({
+            type: UPDATE_CITY,
+            payload: this.state.city
+        })
+        store.dispatch({
+            type: UPDATE_STATE,
+            payload: this.state.houseState
+        })
+        store.dispatch({
+            type:UPDATE_ZIPCODE,
+            payload: this.state.zip_code
+        })
+        //() => this.props.history.push('/wizard/step2')
+    }
+    resetInputs() {
+        store.dispatch({
+            type: RESET_INPUTS
         })
     }
     //goToDash = () => this.props.history.push('/')
@@ -51,7 +83,10 @@ export default class Step1 extends Component {
               const reduxState = store.getState();
               this.setState({
                 name: reduxState.name,
-            address: reduxState.address
+                address: reduxState.address,
+                city: reduxState.city,
+                state: reduxState.houseState,
+                zipcode: reduxState.zipcode,
               })
             })
             console.log(this.state)
@@ -73,7 +108,9 @@ export default class Step1 extends Component {
                 <input type="text" id="text4" onChange={e => this.handleZipChange(e)}/>
             </div>
             {/* Replace the next line with Next Step */}
-                <button onClick={() => this.props.history.push('/wizard/step2')}>Next Step</button>
+            <Link to='/wizard/step2'>
+                <button onClick={() => this.buttonActions()}>Next Step</button>
+            </Link>
         </div>
         )
     }
