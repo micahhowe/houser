@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import store from '../../store';
+import store, { RESET_INPUTS } from '../../store';
 
 export default class Step3 extends Component {
     constructor(props) {
@@ -43,8 +43,13 @@ export default class Step3 extends Component {
       })
        //this.props.addHouse(body) > This is accomplished by the axios right above
        //this.resetText()
+       this.resetInputs()
       }
-       
+      resetInputs() {
+        store.dispatch({
+            type: RESET_INPUTS
+        })
+    } 
     render() {
         //console.log(this.state.zipcode)
         return (

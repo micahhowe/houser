@@ -72,11 +72,7 @@ export default class Step1 extends Component {
         })
         //() => this.props.history.push('/wizard/step2')
     }
-    resetInputs() {
-        store.dispatch({
-            type: RESET_INPUTS
-        })
-    }
+    
     //goToDash = () => this.props.history.push('/')
     componentDidMount(){
             store.subscribe(() => {
