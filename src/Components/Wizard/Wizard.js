@@ -15,7 +15,7 @@ export default class Wizard extends Component {
     
     render() {
         return (
-        <div>
+        <div className="wizard-page">
             {/* These next two lines are the reason that it is displaying twice */}
             <h1>Add new listing</h1>
             <Link to='/'><button>Cancel</button></Link>

@@ -42,8 +42,12 @@ class Dashboard extends Component {
         console.log('house > img:', this.props.img)
         return (
         <div className="page-content">
-            <h1>Dashboard</h1>
-            <button onClick={() => this.props.history.push('/wizard/step1')}>Add New Property</button>
+            <div className="dashboard">
+                <h1>Dashboard</h1>
+                <button onClick={() => this.props.history.push('/wizard/step1')}>Add New Property</button>
+            </div>
+            <hr></hr>
+            <h3>Home Listings</h3>
             <div className="house-list">{this.state.houseList.map(el => (
             <House
             img={el.img}
