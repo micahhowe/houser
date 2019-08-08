@@ -37,7 +37,7 @@ export default class Step2 extends Component {
         <div>
             <div className="wiz-input">
                 <h2>Image Url</h2>
-                <input type="text" id="text" onChange={e => this.handleImageChange(e)}/>
+                <input type="text" id="text" value={this.state.img} onChange={e => this.handleImageChange(e)}/>
             </div>
                         {/* Replace the next line with Next Step & Previous Step */}
                 <Link to='/wizard/step1'>

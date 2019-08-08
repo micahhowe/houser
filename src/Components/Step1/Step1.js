@@ -97,15 +97,15 @@ export default class Step1 extends Component {
         <div>
             <div className="wiz-input">
                 <h2>Name</h2>
-                <input type="text" id="text" onChange={e => this.handleNameChange(e)}/>
+                <input type="text" id="text" value={this.state.name} onChange={e => this.handleNameChange(e)}/>
                 <h2>Address</h2>
-                <input type="text" id="text1" onChange={e => this.handleAddressChange(e)}/>
+                <input type="text" id="text1" value={this.state.address} onChange={e => this.handleAddressChange(e)}/>
                 <h2>City</h2>
-                <input type="text" id="text2" onChange={e => this.handleCityChange(e)}/>
+                <input type="text" id="text2" value={this.state.city} onChange={e => this.handleCityChange(e)}/>
                 <h2>State</h2>
-                <input type="text" id="text3" onChange={e => this.handleStateChange(e)}/>
+                <input type="text" id="text3" value={this.state.unitedState} onChange={e => this.handleStateChange(e)}/>
                 <h2>Zipcode</h2>
-                <input type="text" id="text4" onChange={e => this.handleZipChange(e)}/>
+                <input type="text" id="text4" value={this.state.zipcode} onChange={e => this.handleZipChange(e)}/>
             </div>
             <Link to='/wizard/step2'>
                 <button onClick={() => this.buttonActions()}>Next Step</button>

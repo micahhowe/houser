@@ -51,9 +51,9 @@ export default class Step3 extends Component {
         <div>
             <div className="wiz-input">
                 <h2>Monthly Mortgage Amount</h2>
-                <input type="text" id="text" onChange={e => this.handleMortgageChange(e)}/>
+                <input type="text" id="text" value={this.state.monthly_mortgage_amount} onChange={e => this.handleMortgageChange(e)}/>
                 <h2>Desired Monthly Rent</h2>
-                <input type="text" id="text" onChange={e => this.handleRentChange(e)}/>
+                <input type="text" id="text" value={this.state.desired_rent} onChange={e => this.handleRentChange(e)}/>
             </div>
             {/* This is the real complete and we do need to add the previous step */}
             <Link to='/wizard/step2'>
